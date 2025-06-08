@@ -1,0 +1,30 @@
+<form id="form-daftar">
+  <!-- isian sama seperti sebelumnya -->
+  <input type="text" name="nama" required>
+  <input type="email" name="email" required>
+  <input type="text" name="sekolah" required>
+  <select name="program" required>
+    <option value="wirausaha">Wirausaha</option>
+    <option value="desain">Desain Grafis</option>
+  </select>
+  <button type="submit">Daftar</button>
+</form>
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxTdz4CID3zvpn-fWmXc7aAytmTn1tEo6uCVSsjH6wim33AA6NwA5OFudesCV4FaOc/exec
+
+'; // ganti dengan URL web app kamu
+  const form = document.getElementById('form-daftar');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form));
+    
+    fetch(scriptURL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+    .then(response => alert('✅ Pendaftaran berhasil!'))
+    .catch(error => alert('❌ Gagal mendaftar.'));
+  });
+</script>
